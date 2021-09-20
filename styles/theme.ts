@@ -73,6 +73,12 @@ const theme: Theme = {
       lineHeight: 'body',
       fontSize: 2,
     },
+    lg: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 5,
+    },
     xl: {
       fontFamily: 'heading',
       fontWeight: 'heading',
@@ -172,6 +178,23 @@ const theme: Theme = {
     },
     full: {
       maxWidth: '100%',
+    }
+  },
+  buttons: {
+    primary: {
+      fontSize: 1,
+      fontWeight: 'body',
+      backgroundColor: 'background',
+      color: 'text.light',
+      p: '10px 24px',
+      border: '1px solid',
+      borderColor: 'border.light',
+      boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.2)',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: 'muted',
+      }
     }
   }
 }
