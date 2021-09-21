@@ -20,7 +20,7 @@ const theme: Theme = {
   fontSizes: [
     12,
     14,
-    17,
+    18,
     20,
     24,
     28,
@@ -195,6 +195,12 @@ const theme: Theme = {
       '&:hover': {
         backgroundColor: 'muted',
       }
+    }
+  },
+  forms: {
+    label: {
+      fontSize: 3,
+      fontWeight: 'body',
     }
   }
 }
