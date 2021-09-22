@@ -13,6 +13,10 @@ const Modal: React.FC<Props> = ({
   setShowModal,
   ...props
 }) => {
+  if (!isOpen) {
+    return null
+  }
+
   return (
     <Flex
       {...props}
@@ -26,7 +30,6 @@ const Modal: React.FC<Props> = ({
         background: "rgba(123, 123, 123, 0.3)",
         alignItems: "center",
         justifyContent: "center",
-        display: isOpen ? "flex" : "none",
         zIndex: 10,
       }}
       onClick={(e: React.MouseEvent): void => {
@@ -43,7 +46,7 @@ const Modal: React.FC<Props> = ({
           m: 4,
           backgroundColor: "background",
           p: 5,
-          borderRadius: "4px",
+          borderRadius: "16px",
           boxShadow:
             "0px 10px 38px -10px rgba(14, 18, 22, 0.35), 0px 10px 20px -15px rgba(14, 18, 22, 0.2)",
         }}

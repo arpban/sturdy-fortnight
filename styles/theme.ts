@@ -141,7 +141,11 @@ const theme: Theme = {
       lineHeight: 'body'
     },
     a: {
-      color: 'primary'
+      color: 'primary',
+      cursor: 'pointer',
+      '&:hover': {
+        color: 'secondary'
+      }
     },
     pre: {
       fontFamily: 'monospace',
@@ -199,8 +203,23 @@ const theme: Theme = {
   },
   forms: {
     label: {
-      fontSize: 3,
+      fontSize: 2,
       fontWeight: 'body',
+    },
+    textarea: {
+      border: 'none',
+      fontFamily: 'body',
+      p: 2,
+      background: '#f7f7f7',
+
+      '&:focus': {
+        backgroundColor: 'background'
+      }
+    }
+  },
+  links: {
+    default: {
+      color: 'primary',
     }
   }
 }

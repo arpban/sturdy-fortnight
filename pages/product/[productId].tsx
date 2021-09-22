@@ -3,11 +3,27 @@ import { useState } from "react"
 import type { NextPage } from "next"
 import { useRouter } from "next/router"
 import Link from "next/link"
-import { Box, Container, Heading, Text, Flex, Button, Label } from "theme-ui"
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  Flex,
+  Button,
+  Label,
+  Link as StyledLink,
+  Textarea,
+} from "theme-ui"
 import useSWR, { useSWRConfig } from "swr"
 import { useFormik } from "formik"
 
-import { Layout, Modal, Review } from "../../component"
+import {
+  Layout,
+  Modal,
+  Review,
+  StarRating,
+  StarRatingStatic,
+} from "../../component"
 import InputGroup from "../../component/forms/InputGroup"
 import { fetcher } from "../../utils/fetcher"
 
@@ -19,7 +35,7 @@ const ProductPage: NextPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      rating: "",
+      rating: 5,
       comment: "",
     },
     onSubmit: async (values, { setSubmitting }) => {
@@ -35,10 +51,11 @@ const ProductPage: NextPage = () => {
         }
       )
       const responseJson = await response.json()
-      console.log(responseJson)
       setSubmitting(false)
       setShowModal(false)
       mutate(`http://localhost:3001/api/product/${productId}/review`)
+      mutate(`http://localhost:3001/api/product/${productId}`)
+      formik.resetForm({ rating: 5, comment: "" })
     },
   })
 
@@ -61,10 +78,14 @@ const ProductPage: NextPage = () => {
         sx={{
           minHeight: "100vh",
           bg: "background",
-          pt: 8,
+          py: 8,
         }}
       >
-        {/* <Link href="/"><a>Go back</a></Link> */}
+        <Box mb={3}>
+          <Link href="/">
+            <StyledLink>&larr; Go back</StyledLink>
+          </Link>
+        </Box>
         <Heading as="h1" variant="xl">
           {data.name}
         </Heading>
@@ -78,10 +99,15 @@ const ProductPage: NextPage = () => {
             borderColor: "border.light",
           }}
         >
-          <Flex>
-            <Text as="p" variant="lg" sx={{ fontWeight: "body" }}>
-              3.8
+          <Flex
+            sx={{
+              alignItems: "center",
+            }}
+          >
+            <Text as="p" variant="xl" sx={{ fontWeight: "body" }} mr={3}>
+              {data.rating}
             </Text>
+            {data.rating && <StarRatingStatic rating={data.rating} />}
           </Flex>
           <Button variant="primary" onClick={() => setShowModal(true)}>
             Add review
@@ -103,25 +129,27 @@ const ProductPage: NextPage = () => {
         <Heading as="h2" variant="lg">
           What's your rating?
         </Heading>
-        <Box mt={3}>
+        <Box mt={4}>
           <form onSubmit={formik.handleSubmit}>
             <InputGroup>
-              <Label htmlFor="rating">Rating</Label>
-              <input
-                id="rating"
-                name="rating"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.rating}
+              <Label htmlFor="rating" mb={2}>
+                Rating
+              </Label>
+              <StarRating
+                name={`new-review`}
+                updateRating={rating => formik.setFieldValue("rating", rating)}
               />
             </InputGroup>
 
             <InputGroup>
-              <Label htmlFor="comment">Comment</Label>
-              <textarea
+              <Label htmlFor="comment" mb={2}>
+                Comment
+              </Label>
+              <Textarea
                 name="comment"
                 onChange={formik.handleChange}
                 value={formik.values.comment}
+                placeholder="Start typing..."
               />
             </InputGroup>
 

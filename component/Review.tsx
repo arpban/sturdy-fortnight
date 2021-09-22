@@ -1,8 +1,13 @@
 /** @jsxImportSource theme-ui */
-import { Text, Flex } from "theme-ui";
+import { Text, Flex, Box } from "theme-ui"
+import { StarRating, StarRatingStatic } from "."
+import { css } from "@emotion/react"
 
 const Review: React.FC<{ review: Review }> = ({ review }) => (
   <Flex sx={{ alignItems: "center" }} mt={`12px`}>
+    <Box mr={3}>
+      <StarRatingStatic rating={review.rating} />
+    </Box>
     <Text
       sx={{
         fontWeight: "bold",
@@ -23,6 +28,6 @@ const Review: React.FC<{ review: Review }> = ({ review }) => (
       </Text>
     )}
   </Flex>
-);
+)
 
-export default Review;
+export default Review

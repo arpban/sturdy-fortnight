@@ -3,7 +3,7 @@ type Product = {
   name: string,
   price?: number,
   description?: string,
-  reviews?: Review[]
+  rating?: number,
 }
 
 type Review = {
