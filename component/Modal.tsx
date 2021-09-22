@@ -2,7 +2,7 @@
 import { Box, Flex } from "theme-ui"
 
 type Props = {
-  children: React.Node
+  children: React.ReactNode
   isOpen: boolean
   setShowModal: (state: boolean) => void
 }
