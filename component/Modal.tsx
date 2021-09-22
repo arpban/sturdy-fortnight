@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { Box, Flex, Container } from "theme-ui"
+import { Box, Flex } from "theme-ui"
 
 type Props = {
   children: React.Node

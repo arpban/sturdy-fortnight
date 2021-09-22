@@ -1,5 +1,5 @@
 /** @jsxImportSource theme-ui */
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import type { NextPage } from "next"
 import { useRouter } from "next/router"
 import Link from "next/link"
@@ -23,6 +23,7 @@ import {
   Review,
   StarRating,
   StarRatingStatic,
+  Spinner,
 } from "../../component"
 import InputGroup from "../../component/forms/InputGroup"
 import { fetcher } from "../../utils/fetcher"
@@ -70,7 +71,7 @@ const ProductPage: NextPage = () => {
   )
 
   if (error) return "An error has occurred."
-  if (!data) return "Loading..."
+  if (!data) return <Spinner />
 
   return (
     <Layout title={data.name}>
@@ -117,14 +118,17 @@ const ProductPage: NextPage = () => {
         <Heading as="h2" variant="lg" mt={5}>
           Reviews
         </Heading>
-        <Box mt={4}>
-          {reviewsData &&
-            reviewsData.map(review => (
-              <Review key={review._id} review={review} />
-            ))}
-        </Box>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Box mt={4}>
+            {reviewsData &&
+              reviewsData.map(review => (
+                <Review key={review._id} review={review} />
+              ))}
+          </Box>
+        </Suspense>
       </Container>
 
+      {/* Review popup */}
       <Modal isOpen={showModal} setShowModal={setShowModal}>
         <Heading as="h2" variant="lg">
           What's your rating?

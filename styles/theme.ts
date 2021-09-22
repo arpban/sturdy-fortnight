@@ -46,7 +46,7 @@ const theme: Theme = {
     },
     background: '#fff',
     primary: '#07c',
-    secondary: '#30c',
+    secondary: '#3f51b5',
     muted: '#f6f6f6',
     border: {
       lighter: 'hsl(0deg, 0%, 89%)',

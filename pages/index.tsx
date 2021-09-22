@@ -1,10 +1,9 @@
 /** @jsxImportSource theme-ui */
 import type { NextPage } from "next"
-import Head from "next/head"
-import { Box, Container, Heading, Text, Flex } from "theme-ui"
+import { Container, Heading, Flex } from "theme-ui"
 import useSWR from "swr"
 
-import { Product, Layout } from "../component"
+import { Product, Layout, Spinner } from "../component"
 import { fetcher } from "../utils/fetcher"
 
 const Home: NextPage = () => {
@@ -14,9 +13,7 @@ const Home: NextPage = () => {
   )
 
   if (error) return "An error has occurred."
-  if (!data) return "Loading..."
-
-  console.log(data)
+  if (!data) return <Spinner />
 
   return (
     <Layout>

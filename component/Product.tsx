@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 import Link from "next/link"
-import { Box, Heading, Text, Flex } from "theme-ui"
-import styled from "@emotion/styled"
+import { Heading, Text, Flex } from "theme-ui"
 
 const Product: React.FC<Product> = ({ name, description, price, _id }) => (
   <Link href={`/product/${encodeURIComponent(_id)}/`}>

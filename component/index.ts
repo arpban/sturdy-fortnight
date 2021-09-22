@@ -3,6 +3,7 @@ import Layout from "./Layout"
 import Modal from "./Modal"
 import Review from "./Review"
 import StarRating, { StarRatingStatic } from "./StarRating"
+import Spinner from "./Spinner"
 
 export {
   Product,
@@ -10,5 +11,6 @@ export {
   Modal,
   Review,
   StarRating,
-  StarRatingStatic
+  StarRatingStatic,
+  Spinner
 }
