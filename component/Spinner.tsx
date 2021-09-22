@@ -14,7 +14,13 @@ const Spinner = () => (
       justifyContent: "center",
     }}
   >
-    <HashLoader loading={true} color={"orange"} size={60} />
+    <HashLoader
+      loading={true}
+      color={"orange"}
+      size={60}
+      css={""}
+      speedMultiplier={1}
+    />
   </Flex>
 )
 

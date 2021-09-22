@@ -58,7 +58,7 @@ const ProductPage: NextPage = () => {
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}/review`
       )
       mutate(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}`)
-      formik.resetForm({ rating: 5, comment: "" })
+      formik.resetForm({})
     },
   })
 
@@ -72,7 +72,7 @@ const ProductPage: NextPage = () => {
     fetcher
   )
 
-  if (error) return "An error has occurred."
+  if (error) return <Text>An error has occurred.</Text>
   if (!data) return <Spinner />
 
   return (
@@ -133,7 +133,7 @@ const ProductPage: NextPage = () => {
       {/* Review popup */}
       <Modal isOpen={showModal} setShowModal={setShowModal}>
         <Heading as="h2" variant="lg">
-          What's your rating?
+          What&apos;s your rating?
         </Heading>
         <Box mt={4}>
           <form onSubmit={formik.handleSubmit}>

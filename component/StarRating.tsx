@@ -9,7 +9,7 @@ type Star = {
   name?: string
   checked?: boolean
   isStatic?: boolean
-  setRating?: (rating: number) => void
+  setRating?: (rating: number | string) => void
 }
 
 const Star: React.FC<Star> = ({
@@ -36,7 +36,7 @@ const Star: React.FC<Star> = ({
           icon={half ? faStarHalf : faStar}
         />
       </label>
-      {!isStatic && (
+      {!isStatic && setRating && (
         <input
           className="rating__input"
           name={name}
@@ -52,7 +52,7 @@ const Star: React.FC<Star> = ({
 
 type StarRating = {
   name?: string
-  updateRating?: (rating: number) => void
+  updateRating?: (rating: number | string) => void
 }
 
 const StarRating: React.FC<StarRating> = ({ name, updateRating }) => {
@@ -79,7 +79,7 @@ const StarRating: React.FC<StarRating> = ({ name, updateRating }) => {
 
 type StarRatingStatic = {
   name?: string
-  rating?: number
+  rating: number
 }
 
 const StarRatingStatic: React.FC<StarRatingStatic> = ({ name, rating }) => {
