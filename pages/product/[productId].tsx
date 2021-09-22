@@ -42,7 +42,7 @@ const ProductPage: NextPage = () => {
     onSubmit: async (values, { setSubmitting }) => {
       console.log(JSON.stringify(values, null, 2))
       const response = await fetch(
-        `http://localhost:3001/api/product/${productId}/review`,
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}/review`,
         {
           method: "POST",
           headers: {
@@ -54,19 +54,21 @@ const ProductPage: NextPage = () => {
       const responseJson = await response.json()
       setSubmitting(false)
       setShowModal(false)
-      mutate(`http://localhost:3001/api/product/${productId}/review`)
-      mutate(`http://localhost:3001/api/product/${productId}`)
+      mutate(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}/review`
+      )
+      mutate(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}`)
       formik.resetForm({ rating: 5, comment: "" })
     },
   })
 
   const { data, error } = useSWR<Product>(
-    `http://localhost:3001/api/product/${productId}`,
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}`,
     fetcher
   )
 
   const { data: reviewsData, error: reviewsError } = useSWR<Review[]>(
-    `http://localhost:3001/api/product/${productId}/review`,
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/${productId}/review`,
     fetcher
   )
 

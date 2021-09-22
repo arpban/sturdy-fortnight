@@ -8,7 +8,7 @@ import { fetcher } from "../utils/fetcher"
 
 const Home: NextPage = () => {
   const { data, error } = useSWR<Product[]>(
-    "http://localhost:3001/api/product/",
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product/`,
     fetcher
   )
 
