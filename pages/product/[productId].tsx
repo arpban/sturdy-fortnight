@@ -85,7 +85,7 @@ const ProductPage: NextPage = () => {
         }}
       >
         <Box mb={3}>
-          <Link href="/">
+          <Link href="/" passHref>
             <StyledLink>&larr; Go back</StyledLink>
           </Link>
         </Box>

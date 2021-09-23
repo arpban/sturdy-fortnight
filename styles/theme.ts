@@ -40,7 +40,7 @@ const theme: Theme = {
   colors: {
     text: {
       lighter: '#929292',
-      light: '#858585',
+      light: '#757575',
       base: '#333',
       dark: '#000'
     },
